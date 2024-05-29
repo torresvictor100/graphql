@@ -1,0 +1,25 @@
+type Document {
+    id: ID!
+    number: String!
+}
+
+type Person {
+    id: ID!
+    name: String!
+    documents: [Document!]!
+}
+
+input PersonRecord {
+    name: String!
+}
+
+type Query {
+    getPersonById(id: ID) : Person
+    getDocumentById(id: ID) : Document
+}
+
+type Mutation {
+    createPerson(name: String!): Person
+    createDocument(number: String!, personId: ID!): Document
+    createPersonAndDocument(number: String!, person: PersonRecord!): Person
+}

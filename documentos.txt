@@ -1,0 +1,52 @@
+subir docker
+
+docker build -t custom-mysql .
+
+docker run -d -p 3306:3306 --name mysql_server custom-mysql
+
+
+requisições no graphql
+
+criar pessoa
+
+mutation {
+  createPerson(name: "João"){
+  id,
+	name
+  }
+}
+
+criar um documento
+
+mutation {
+  createDocument(number: "rg", personId: 1){
+  id,
+	number
+  }
+}
+
+criar uma pessoa junto com documento
+
+mutation {
+  createPersonAndDocument(number: "123456", person: {name: "name"}){
+    id,
+    name,
+    documents{
+      id,
+      number
+    }
+  }
+}
+
+fazer um get de uma pessoa
+
+query {
+  getPersonById(id:9){
+    id,
+	  name,
+    documents{
+      id,
+      number
+    }
+  }
+
